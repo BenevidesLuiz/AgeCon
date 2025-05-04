@@ -30,4 +30,24 @@ public class BairroVisao extends FormPadrao{
     public void salvarVisao() {
   
     }
+
+    @Override
+    public void criarTabela() {
+   /*
+            tabela = utilTabela.criarTabela(
+                jpnConsulta, 
+                new Object[] {60,750},
+                new Object[] {"centro","esquerda"},
+       dados >>         new Object[] {"ID","Descrição"}
+        );
+        modelo = (DefaultTableModel) tabela.getModel();    
+        
+     */
+    
+    }
+
+    @Override
+    public void consultaVisao() {
+   
+    }
 }

@@ -4,6 +4,11 @@ package controle;
 import dao.TipoContatoDao;
 import interfaces.InterfaceControle;
 import modelo.TipoContatoModelo;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 public class TipoContatoControler implements InterfaceControle{
 
@@ -33,6 +38,16 @@ public class TipoContatoControler implements InterfaceControle{
     @Override
     public void carregarComboBox() {
 
+    }
+
+    @Override
+    public void consultarControle(Object... valor) {
+        try {
+            tcd.consultarDao(valor);
+        } catch (SQLException e) {
+            Logger.getLogger(TipoContatoControler.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
     }
     
 }

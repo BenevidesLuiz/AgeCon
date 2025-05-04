@@ -1,22 +1,36 @@
 package visao;
 
+import java.awt.event.KeyAdapter;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import util.Tabela;
+import java.awt.event.KeyEvent;
+
 
 abstract public class FormPadrao extends javax.swing.JInternalFrame {
     
     abstract public void inicializarComponentes();
     abstract public void salvarVisao();
+    abstract public void criarTabela();
+    abstract public void consultaVisao();
     
+    
+    JTable tabela;
+    DefaultTableModel modelo = new DefaultTableModel();  
      
     JLabel jlConsulta;
     JTextField jtfConsulta;
+    Tabela utilTabela = new Tabela();
     
     
     public FormPadrao() {
         initComponents();
         habilitaBotoes(true);
         inicializarComponentes();
+        criarTabela();
+        
         
         jtfId.setEnabled(false);
         habilitaCampos(false);
@@ -30,8 +44,15 @@ abstract public class FormPadrao extends javax.swing.JInternalFrame {
         jtfConsulta = new JTextField();
         jtfConsulta.setBounds(60, 5, 615, 25);
         jpnConsulta.add(jtfConsulta);
+        
+        jtfConsulta.addKeyListener(
+                new KeyAdapter() {
+                    public void keyReleased(KeyEvent e) {
+                       consultaVisao();
+                    }
                 
-                
+                });
+             
                 
     }
 
@@ -237,6 +258,7 @@ abstract public class FormPadrao extends javax.swing.JInternalFrame {
         habilitaBotoes(true);
         habilitaCampos(false);
         salvarVisao();
+        consultaVisao();
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed

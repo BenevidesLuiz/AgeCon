@@ -1,9 +1,12 @@
 package visao;
 
 import javax.swing.JFrame;
+import util.PosicaoFormulario;
 
 
 public class Principal extends javax.swing.JFrame {
+    
+    PosicaoFormulario form = new PosicaoFormulario();
 
     public Principal() {
         initComponents();
@@ -120,29 +123,25 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiContatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiContatosActionPerformed
-        
-        ContatoVisao tela = new ContatoVisao();
-        JDesktop.add(tela);
-        tela.setVisible(true);
-        
+        ContatoVisao tela;
+        form.abrirFormulario(tela = new ContatoVisao(), JDesktop);     
     }//GEN-LAST:event_jmiContatosActionPerformed
 
     private void jmiCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCidadeActionPerformed
-       CidadeVisao tela = new CidadeVisao();
-        JDesktop.add(tela);
-        tela.setVisible(true);
+        CidadeVisao tela;
+        form.abrirFormulario(tela = new CidadeVisao(), JDesktop);
     }//GEN-LAST:event_jmiCidadeActionPerformed
 
     private void jmiBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBairroActionPerformed
-       BairroVisao tela = new BairroVisao();
-        JDesktop.add(tela);
-        tela.setVisible(true);
+        BairroVisao tela;
+        form.abrirFormulario(tela = new BairroVisao(), JDesktop);
     }//GEN-LAST:event_jmiBairroActionPerformed
 
     private void jmiTipoContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTipoContatoActionPerformed
-       TipoContatoVisao tela = new TipoContatoVisao();
-        JDesktop.add(tela);
-        tela.setVisible(true);
+        //comandos para abrir o formulario
+        TipoContatoVisao tela;
+        form.abrirFormulario(tela = new TipoContatoVisao(), JDesktop);
+        
     }//GEN-LAST:event_jmiTipoContatoActionPerformed
 
     public static void main(String args[]) {
