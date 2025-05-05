@@ -7,6 +7,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import util.Tabela;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 
 abstract public class FormPadrao extends javax.swing.JInternalFrame {
@@ -15,6 +18,8 @@ abstract public class FormPadrao extends javax.swing.JInternalFrame {
     abstract public void salvarVisao();
     abstract public void criarTabela();
     abstract public void consultaVisao();
+    abstract public void atualizarForumulario();
+    abstract public void exluirVisao();
     
     
     JTable tabela;
@@ -52,7 +57,23 @@ abstract public class FormPadrao extends javax.swing.JInternalFrame {
                     }
                 
                 });
-             
+        
+        
+        tabela.addMouseListener(
+                new MouseAdapter() {
+                    public void mouseReleased(MouseEvent e) {
+                       atualizarForumulario();
+                    }
+                
+                });
+        
+        tabela.addKeyListener(
+                new KeyAdapter() {
+                    public void keyReleased(KeyEvent e) {
+                       atualizarForumulario();
+                    }
+                
+                });
                 
     }
 
@@ -272,6 +293,13 @@ abstract public class FormPadrao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbExluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExluirActionPerformed
+        if(JOptionPane.showConfirmDialog(null, "Deseja Realmente Exluir?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+            exluirVisao();
+            consultaVisao();
+            limparCampos(); 
+        }else{
+            JOptionPane.showMessageDialog(null, "Exlusão Cancelada!");
+        }
         
     }//GEN-LAST:event_jbExluirActionPerformed
 

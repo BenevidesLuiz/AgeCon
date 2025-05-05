@@ -3,16 +3,14 @@ package controle;
 
 import dao.TipoContatoDao;
 import interfaces.InterfaceControle;
-import modelo.TipoContatoModelo;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.BairroModelo;
 
-
-
-public class TipoContatoControler implements InterfaceControle{
-
-    TipoContatoModelo tcm = new TipoContatoModelo(); 
+public class BairroControler implements InterfaceControle {
+    
+    BairroModelo tcm = new BairroModelo(); 
     TipoContatoDao tcd = new TipoContatoDao();
     
     
@@ -24,7 +22,7 @@ public class TipoContatoControler implements InterfaceControle{
             tcm.setId(Integer.parseInt(valor[0].toString()));
        }
        
-       tcm.setDescricao((String) valor[1]);
+       tcm.setNome((String) valor[1]);
        
        tcd.salvarDao(tcm);
     
@@ -51,3 +49,5 @@ public class TipoContatoControler implements InterfaceControle{
     }
     
 }
+
+

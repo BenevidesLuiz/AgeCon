@@ -4,13 +4,13 @@ import interfaces.InterfaceDao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
-import modelo.TipoContatoModelo;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.BairroModelo;
 
 
-public class TipoContatoDao implements InterfaceDao{
+public class BairroDao implements InterfaceDao{
     
     String sql;
     PreparedStatement stm;
@@ -20,21 +20,21 @@ public class TipoContatoDao implements InterfaceDao{
     
     @Override
     public void salvarDao(Object... valor) {
-        TipoContatoModelo tcm = (TipoContatoModelo) valor[0];
+        BairroModelo tcm = (BairroModelo) valor[0];
         
         //descobrir se é uma inclusao ou alteração!
         if(tcm.getId() == 0){
-            sql = "INSERT INTO tipo_contato (descricao) VALUES (?)";
+            sql = "INSERT INTO bairro (nome) VALUES (?)";
             JOptionPane.showMessageDialog(null, "Registrado Com Sucesso!!!");
         }else{
-            sql = "UPDATE tipo_contato SET descricao=? WHERE id=?";
+            sql = "UPDATE bairro SET nome=? WHERE id=?";
             JOptionPane.showMessageDialog(null, "Registro Alterado Com Sucesso!!!");
         }
         
         try{
             stm = ConexaoBanco.abreConexao().prepareStatement(sql);
             
-            stm.setString(1, tcm.getDescricao());
+            stm.setString(1, tcm.getNome());
             
             if(tcm.getId() > 0) stm.setInt(2, tcm.getId());
             
@@ -45,14 +45,14 @@ public class TipoContatoDao implements InterfaceDao{
             
             
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Erro ao Registrar!" + e);
+            JOptionPane.showMessageDialog(null, "Erro ao Registrar! " + e);
         }
         
    }
 
     @Override
     public void excluirDao(int id) {
-        sql = "DELETE FROM tipo_contato WHERE id=?";
+        sql = "DELETE FROM bairro WHERE id=?";
         try {
         stm = ConexaoBanco.abreConexao().prepareStatement(sql);
         stm.setInt(1,id);
@@ -73,9 +73,9 @@ public class TipoContatoDao implements InterfaceDao{
         DefaultTableModel tabela = (DefaultTableModel) valor[1];
         
         if("".equals((String) valor[0])){
-          sql = "SELECT * FROM tipo_contato";  
+          sql = "SELECT * FROM bairro";  
         }else{
-            sql = "SELECT * FROM tipo_contato WHERE descricao LIKE '%"+valor[0]+"%'";
+            sql = "SELECT * FROM bairro WHERE nome LIKE '%"+valor[0]+"%'";
         }
         
         stm = ConexaoBanco.abreConexao().prepareStatement(sql);

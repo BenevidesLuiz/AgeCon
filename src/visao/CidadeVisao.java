@@ -63,4 +63,14 @@ public class CidadeVisao extends FormPadrao{
     public void consultaVisao() {
     
     }
+
+    @Override
+    public void atualizarForumulario() {
+    
+    }
+
+    @Override
+    public void exluirVisao() {
+   
+    }
 }

@@ -34,4 +34,14 @@ public class ContatoVisao extends FormPadrao{
     public void consultaVisao() {
         modelo.setNumRows(0);
     }
+
+    @Override
+    public void atualizarForumulario() {
+   
+    }
+
+    @Override
+    public void exluirVisao() {
+    
+    }
 }
