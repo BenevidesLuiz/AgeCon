@@ -20,35 +20,35 @@ public class BairroDao implements InterfaceDao{
     
     @Override
     public void salvarDao(Object... valor) {
-        BairroModelo tcm = (BairroModelo) valor[0];
-        
-        //descobrir se é uma inclusao ou alteração!
-        if(tcm.getId() == 0){
-            sql = "INSERT INTO bairro (nome) VALUES (?)";
-            JOptionPane.showMessageDialog(null, "Registrado Com Sucesso!!!");
-        }else{
-            sql = "UPDATE bairro SET nome=? WHERE id=?";
-            JOptionPane.showMessageDialog(null, "Registro Alterado Com Sucesso!!!");
+        BairroModelo brm = (BairroModelo) valor[0];
+
+        if (brm.getId() == 0) {
+            sql = "INSERT INTO bairro (nome, cidade_id, referencias) VALUES (?, ?, ?)";
+            JOptionPane.showMessageDialog(null, "Registrado com sucesso!");
+        } else {
+            sql = "UPDATE bairro SET nome=?, cidade_id=?, referencias=? WHERE id=?";
+            JOptionPane.showMessageDialog(null, "Registro alterado com sucesso!");
         }
-        
-        try{
+
+        try {
             stm = ConexaoBanco.abreConexao().prepareStatement(sql);
-            
-            stm.setString(1, tcm.getNome());
-            
-            if(tcm.getId() > 0) stm.setInt(2, tcm.getId());
-            
-            
+
+            stm.setString(1, brm.getNome());
+            stm.setInt(2, brm.getCidade_id());
+            stm.setString(3, brm.getReferencias());
+
+            if (brm.getId() > 0) {
+                stm.setInt(4, brm.getId()); // parâmetro para o WHERE
+            }
+
             stm.execute();
-            
             stm.close();
-            
-            
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Erro ao Registrar! " + e);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao registrar: " + e);
         }
-        
-   }
+}
+
 
     @Override
     public void excluirDao(int id) {
@@ -68,30 +68,30 @@ public class BairroDao implements InterfaceDao{
 
     @Override
     public void consultarDao(Object... valor) throws SQLException {
-        
-        
+
         DefaultTableModel tabela = (DefaultTableModel) valor[1];
-        
-        if("".equals((String) valor[0])){
-          sql = "SELECT * FROM bairro";  
-        }else{
-            sql = "SELECT * FROM bairro WHERE nome LIKE '%"+valor[0]+"%'";
+
+        if ("".equals((String) valor[0])) {
+            sql = "SELECT * FROM bairro";
+        } else {
+            sql = "SELECT * FROM bairro WHERE nome LIKE '%" + valor[0] + "%'";
         }
-        
+
         stm = ConexaoBanco.abreConexao().prepareStatement(sql);
-        resultado = stm.executeQuery(); 
-        
-        while(resultado.next()){
-            tabela.addRow(
-                 new Object[]{
-                     resultado.getInt("id"),
-                     resultado.getString("descricao")
-                 }
-            );
+        resultado = stm.executeQuery();
+
+        while (resultado.next()) {
+            tabela.addRow(new Object[]{
+                resultado.getInt("id"),
+                resultado.getString("nome"),
+                resultado.getInt("cidade_id"),
+                resultado.getString("referencias")
+            });
         }
+
         stm.close();
-    
-    }
+}
+
 
     @Override
     public void carregarDao(JComboBox itens) throws SQLException {

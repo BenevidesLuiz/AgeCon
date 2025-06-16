@@ -1,6 +1,5 @@
 package util;
 
-import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,60 +15,61 @@ import javax.swing.table.TableRowSorter;
 public class Tabela {
 
     public JTable criarTabela(JPanel jpn, Object[] largura, Object[] pos, Object[] col) throws NullPointerException {
-        
+
         JTable tabela = new JTable(new DefaultTableModel());
         tabela.setVisible(true);
-        
-        DefaultTableModel modeloTabela = (DefaultTableModel) tabela.getModel();    
 
-    
+        DefaultTableModel modeloTabela = (DefaultTableModel) tabela.getModel();
+
         tabela.setFont(new Font("Arial", Font.BOLD, 12));
         JScrollPane jsp = new JScrollPane(tabela);
         tabela.setRowHeight(19);
         jsp.setBounds(10, 50, 703, 100);
         jsp.setVisible(true);
         jpn.add(jsp);
-      
 
-        // Ordenando ao clicar no titulo da coluna da tabela
-        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modeloTabela);
-        tabela.setRowSorter(sorter);             
-       
-        //Adicionando coluna
-        for (int i = 0; i < col.length; i++) {
-            modeloTabela.addColumn(col[i]);
+        // Habilita ordenação ao clicar no título da coluna
+        RowSorter<TableModel> sorter = new TableRowSorter<>(modeloTabela);
+        tabela.setRowSorter(sorter);
+
+        // Adiciona as colunas no modelo da tabela
+        for (Object colNome : col) {
+            modeloTabela.addColumn(colNome);
         }
 
-        //Criando objeto para alinhamento dos dados dentro da tabela
+        // Renderizadores para alinhamento
         DefaultTableCellRenderer centro = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer direita = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
-
-        //Adicionando as posiçoes
         centro.setHorizontalAlignment(SwingConstants.CENTER);
+
+        DefaultTableCellRenderer direita = new DefaultTableCellRenderer();
         direita.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
         esquerda.setHorizontalAlignment(SwingConstants.LEFT);
 
-        //Trabalhando com as colunas 
+        // Configuração das colunas: largura e alinhamento
         for (int i = 0; i < largura.length; i++) {
-            if (pos[i].equals("centro")) {
-                pos[i] = centro;
-            }
-            if (pos[i].equals("direita")) {
-                pos[i] = direita;
-            }
-            if (pos[i].equals("esquerda")) {
-                pos[i] = esquerda;
-            }
-
+            // Definindo a largura da coluna
             tabela.getColumnModel().getColumn(i).setMaxWidth(
                     Integer.parseInt(largura[i].toString())
             );
 
-            tabela.getColumnModel().getColumn(i).setCellRenderer(
-                    (TableCellRenderer) pos[i]);
+            // Definindo o alinhamento
+            TableCellRenderer alinhamento;
 
+            if (pos[i].equals("centro")) {
+                alinhamento = centro;
+            } else if (pos[i].equals("direita")) {
+                alinhamento = direita;
+            } else if (pos[i].equals("esquerda")) {
+                alinhamento = esquerda;
+            } else {
+                alinhamento = centro; // padrão, se for inválido
+            }
+
+            tabela.getColumnModel().getColumn(i).setCellRenderer(alinhamento);
         }
+
         return tabela;
     }
 }
