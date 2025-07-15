@@ -41,6 +41,7 @@ public class BairroControler implements InterfaceControle {
         }
     }
 
+<<<<<<< HEAD
     /**
      * Método ajustado para consultar e preencher o DefaultTableModel diretamente
      * 
@@ -50,16 +51,25 @@ public class BairroControler implements InterfaceControle {
     public void consultarControle(String filtro, DefaultTableModel modelo) {
         try {
             bairroDao.consultarDao(filtro, modelo);
+=======
+    @Override
+    public void consultarControle(Object... valor) {
+        try {
+            bairroDao.consultarDao(valor);
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
         } catch (SQLException ex) {
             Logger.getLogger(BairroControler.class.getName()).log(Level.SEVERE, "Erro ao consultar bairro", ex);
         }
     }
 
+<<<<<<< HEAD
     @Override
     public void consultarControle(Object... valor) {
         throw new UnsupportedOperationException("Use consultarControle(String filtro, DefaultTableModel modelo) para consultas.");
     }
 
+=======
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
     /**
      * Carrega as cidades no JComboBox informado, usando o CidadeDao.
      * 

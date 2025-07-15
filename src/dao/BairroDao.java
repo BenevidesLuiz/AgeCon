@@ -66,6 +66,7 @@ public class BairroDao implements InterfaceDao{
         }
     }
 
+<<<<<<< HEAD
    @Override
 public void consultarDao(Object... valor) throws SQLException {
 
@@ -140,5 +141,38 @@ public class Item {
     }
 }
 
+=======
+    @Override
+    public void consultarDao(Object... valor) throws SQLException {
+
+        DefaultTableModel tabela = (DefaultTableModel) valor[1];
+
+        if ("".equals((String) valor[0])) {
+            sql = "SELECT * FROM bairro";
+        } else {
+            sql = "SELECT * FROM bairro WHERE nome LIKE '%" + valor[0] + "%'";
+        }
+
+        stm = ConexaoBanco.abreConexao().prepareStatement(sql);
+        resultado = stm.executeQuery();
+
+        while (resultado.next()) {
+            tabela.addRow(new Object[]{
+                resultado.getInt("id"),
+                resultado.getString("nome"),
+                resultado.getInt("cidade_id"),
+                resultado.getString("referencias")
+            });
+        }
+
+        stm.close();
+}
+
+
+    @Override
+    public void carregarDao(JComboBox itens) throws SQLException {
+    
+    }
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
     
 }

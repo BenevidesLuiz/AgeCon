@@ -43,7 +43,11 @@ is divided into following sections:
         <property file="nbproject/private/private.properties"/>
     </target>
     <target name="-pre-init-libraries">
+<<<<<<< HEAD
         <property location="../../Downloads/mysql-connector-j-9.3.0\nblibraries.properties" name="libraries.path"/>
+=======
+        <property location="../../../Downloads/mysql-connector-j-9.3.0\nblibraries.properties" name="libraries.path"/>
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
         <dirname file="${libraries.path}" property="libraries.dir.nativedirsep"/>
         <pathconvert dirsep="/" property="libraries.dir">
             <path path="${libraries.dir.nativedirsep}"/>

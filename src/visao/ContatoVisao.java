@@ -1,5 +1,6 @@
 package visao;
 
+<<<<<<< HEAD
 import controle.ContatoController;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,10 +24,17 @@ public class ContatoVisao extends FormPadrao {
         super.limparCampos(); // limpa jtfDescricao e jtfId
         jtfTelefone.setText("");
         jtfEmail.setText("");
+=======
+public class ContatoVisao extends FormPadrao{
+    
+    public ContatoVisao(){
+    setTitle("Cadastro de Contatos");
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
     }
 
     @Override
     public void inicializarComponentes() {
+<<<<<<< HEAD
         // Campo Telefone
         jlTelefone = new JLabel("Telefone");
         jlTelefone.setBounds(10, 85, 100, 25);
@@ -44,10 +52,14 @@ public class ContatoVisao extends FormPadrao {
         jtfEmail = new JTextField();
         jtfEmail.setBounds(200, 105, 250, 25);
         jpnForumulario.add(jtfEmail);
+=======
+
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
     }
 
     @Override
     public void salvarVisao() {
+<<<<<<< HEAD
         String nome = jtfDescricao.getText().trim();
         String telefone = jtfTelefone.getText().trim();
         String email = jtfEmail.getText().trim();
@@ -84,10 +96,14 @@ public class ContatoVisao extends FormPadrao {
     public void exluirVisao() {
         contatoController.excluirControle(Integer.parseInt(jtfId.getText()));
         consultaVisao();
+=======
+   
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
     }
 
     @Override
     public void criarTabela() {
+<<<<<<< HEAD
         tabela = utilTabela.criarTabela(
             jpnConsulta,
             new Object[]{60, 200, 150, 250}, // ID, Nome, Telefone, Email
@@ -95,19 +111,43 @@ public class ContatoVisao extends FormPadrao {
             new Object[]{"ID", "Nome", "Telefone", "Email"}
         );
         modelo = (DefaultTableModel) tabela.getModel();
+=======
+        /*
+        tabela = utilTabela.criarTabela(
+                jpnConsulta, 
+                new Object[] {60,750},
+                new Object[] {"centro","esquerda"},
+        campos::        new Object[] {"ID","Descrição"}
+        );
+        modelo = (DefaultTableModel) tabela.getModel();
+        */
+    
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
     }
 
     @Override
     public void consultaVisao() {
         modelo.setNumRows(0);
+<<<<<<< HEAD
         contatoController.consultarControle(jtfConsulta.getText(), modelo);
+=======
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
     }
 
     @Override
     public void atualizarForumulario() {
+<<<<<<< HEAD
         jtfId.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
         jtfDescricao.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
         jtfTelefone.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
         jtfEmail.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
+=======
+   
+    }
+
+    @Override
+    public void exluirVisao() {
+    
+>>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
     }
 }
