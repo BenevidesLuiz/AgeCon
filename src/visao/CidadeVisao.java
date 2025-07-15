@@ -51,7 +51,7 @@ public class CidadeVisao extends FormPadrao {
 
         jtfCep = new JTextField();
         jtfCep.setBounds(10, 105, 150, 25);
-        jpnForumulario.add(jtfCep);;
+        jpnForumulario.add(jtfCep);
     }
 
     @Override

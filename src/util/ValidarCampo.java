@@ -31,5 +31,20 @@ public class ValidarCampo {
         cepInt = cep.toString().substring(0, 5) + cep.toString().substring(6, 9);
         return Integer.parseInt(cepInt);
     }
+    
+    
+    public JTextField ValidarTelefone(JTextField telefone) {
+    String valor = telefone.getText().trim();
+
+    // Verifica se contém apenas números e tem 10 ou 11 dígitos
+    if (valor.matches("\\d{10,11}")) {
+        telefone.setBackground(Color.WHITE); // válido: cor normal
+    } else {
+        telefone.setBackground(Color.PINK);  // inválido: cor de erro
+    }
+    return telefone;
+  }
+
+    
 
 }
