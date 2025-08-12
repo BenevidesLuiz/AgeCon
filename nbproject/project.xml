@@ -12,11 +12,7 @@
             </test-roots>
         </data>
         <libraries xmlns="http://www.netbeans.org/ns/ant-project-libraries/1">
-<<<<<<< HEAD
             <definitions>../../Downloads/mysql-connector-j-9.3.0\nblibraries.properties</definitions>
-=======
-            <definitions>../../../Downloads/mysql-connector-j-9.3.0\nblibraries.properties</definitions>
->>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
         </libraries>
     </configuration>
 </project>

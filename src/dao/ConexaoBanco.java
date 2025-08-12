@@ -24,8 +24,10 @@ public class ConexaoBanco {
             //Para testar a conexão:
             //JOptionPane.showMessageDialog(null, "Conectado com Sucesso!");
         } catch (ClassNotFoundException e) {
+            e.printStackTrace(); 
             JOptionPane.showMessageDialog(null, "Driver JDBC não encontrado: " + e.getMessage());
         } catch (SQLException e) {
+            e.printStackTrace(); 
             JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco: " + e.getMessage());
         }
 

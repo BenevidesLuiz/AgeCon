@@ -31,8 +31,6 @@ public class ValidarCampo {
         cepInt = cep.toString().substring(0, 5) + cep.toString().substring(6, 9);
         return Integer.parseInt(cepInt);
     }
-<<<<<<< HEAD
-    
     
     public JTextField ValidarTelefone(JTextField telefone) {
     String valor = telefone.getText().trim();
@@ -46,8 +44,5 @@ public class ValidarCampo {
     return telefone;
   }
 
-    
-=======
->>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
 
 }

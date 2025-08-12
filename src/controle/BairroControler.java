@@ -41,38 +41,32 @@ public class BairroControler implements InterfaceControle {
         }
     }
 
-<<<<<<< HEAD
     /**
      * Método ajustado para consultar e preencher o DefaultTableModel diretamente
-     * 
+     *
      * @param filtro Texto para filtro de busca (ex: nome)
      * @param modelo DefaultTableModel que será preenchido para exibição na tabela
      */
     public void consultarControle(String filtro, DefaultTableModel modelo) {
         try {
             bairroDao.consultarDao(filtro, modelo);
-=======
+        } catch (Exception e) {
+            Logger.getLogger(BairroControler.class.getName()).log(Level.SEVERE, "Erro ao consultar bairro com filtro", e);
+        }
+    }
+
     @Override
     public void consultarControle(Object... valor) {
         try {
             bairroDao.consultarDao(valor);
->>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
         } catch (SQLException ex) {
             Logger.getLogger(BairroControler.class.getName()).log(Level.SEVERE, "Erro ao consultar bairro", ex);
         }
     }
 
-<<<<<<< HEAD
-    @Override
-    public void consultarControle(Object... valor) {
-        throw new UnsupportedOperationException("Use consultarControle(String filtro, DefaultTableModel modelo) para consultas.");
-    }
-
-=======
->>>>>>> e31d81004d2b48d840391e7bdfe4e8788b4aa961
     /**
      * Carrega as cidades no JComboBox informado, usando o CidadeDao.
-     * 
+     *
      * @param box JComboBox a ser populado
      */
     public void carregarCidades(JComboBox box) {
@@ -85,6 +79,6 @@ public class BairroControler implements InterfaceControle {
 
     @Override
     public void carregarComboBox() {
-        throw new UnsupportedOperationException("Use o método carregarCidades(JComboBox box) para carregar cidades.");
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
